@@ -1,0 +1,6 @@
+*.pro.user
+
+src/*.o
+build/
+
+tests/test
