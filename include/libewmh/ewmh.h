@@ -14,7 +14,7 @@
 
 EWMH_EXTERN_C_BEGIN
 
-
+uint32_t ewmh_net_number_of_desktops();
 
 EWMH_EXTERN_C_END
 

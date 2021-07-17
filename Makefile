@@ -1,5 +1,6 @@
 OBJ = src/xcb.c \
-	src/icccm.c
+	src/icccm.c \
+	src/ewmh.c
 
 CFLAGS += -I./include -lxcb -Wall -O2
 
