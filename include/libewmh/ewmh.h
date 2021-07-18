@@ -14,7 +14,15 @@
 
 EWMH_EXTERN_C_BEGIN
 
+/*====================================*/
+/* Root window properties and messages*/
+/*====================================*/
+
 uint32_t ewmh_net_number_of_desktops();
+
+uint32_t ewmh_net_current_desktop();
+
+uint32_t ewmh_net_active_window();
 
 EWMH_EXTERN_C_END
 
