@@ -2,6 +2,8 @@
 
 #include <libewmh/ewmh.h>
 
+#include "int_dialog.h"
+
 #define ROOT_DETAIL_WINDOW_WIDTH 50
 #define ROOT_DETAIL_WINDOW_HEIGHT 18
 
@@ -151,6 +153,20 @@ void root_detail_window_set_focus()
             if (props->index == -1) {
                 printw("INDEX is QUIT");
                 return;
+            } else {
+                struct prop_tuple *prop_tuple = &(prop_index[props->index]);
+                if (prop_tuple->format == FORMAT_DEC ||
+                        prop_tuple->format == FORMAT_HEX) {
+                    int new_val = int_dialog(
+                        prop_tuple->name,
+                        (uint64_t)prop_tuple->getter()
+                    );
+                    if (new_val != -1) {
+                        printw("Value changed to %d", new_val);
+                    }
+                    self.clear_window();
+                    self.refresh_window();
+                }
             }
             break;
         default:
