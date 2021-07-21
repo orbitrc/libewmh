@@ -28,6 +28,7 @@ struct prop_tuple {
     int index;
     const char *name;
     void* (*getter)();
+    void (*setter)(void*);
     int format;
 };
 
@@ -36,18 +37,21 @@ struct prop_tuple prop_index[INDEX_COUNT] = {
         NET_NUMBER_OF_DESKTOPS_INDEX,
         "_NET_NUMBER_OF_DESKTOPS",
         (void*)ewmh_net_number_of_desktops,
+        (void (*)(void*))ewmh_set_net_number_of_desktops,
         FORMAT_DEC,
     },
     {
         NET_CURRENT_DESKTOP_INDEX,
         "_NET_CURRENT_DESKTOP",
         (void*)ewmh_net_current_desktop,
+        NULL,
         FORMAT_DEC,
     },
     {
         NET_ACTIVE_WINDOW_INDEX,
         "_NET_ACTIVE_WINDOW",
         (void*)ewmh_net_active_window,
+        NULL,
         FORMAT_HEX,
     },
 };
@@ -163,6 +167,17 @@ void root_detail_window_set_focus()
                     );
                     if (new_val != -1) {
                         printw("Value changed to %d", new_val);
+                        if (prop_tuple->setter != NULL) {
+                            switch (prop_tuple->format) {
+                            case FORMAT_DEC:
+                                ((void (*)(uint32_t))(prop_tuple->setter))(
+                                    new_val
+                                );
+                                break;
+                            default:
+                                break;
+                            }
+                        }
                     }
                     self.clear_window();
                     self.refresh_window();

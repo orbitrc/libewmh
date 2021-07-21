@@ -50,6 +50,11 @@ int int_dialog(const char *title, int val)
                 int_dialog_refresh();
             }
             break;
+        case '\t':
+            props->ok = !(props->ok);
+            int_dialog_clear();
+            int_dialog_refresh();
+            break;
         case '\n':
             delwin(self.window);
             if (props->ok) {

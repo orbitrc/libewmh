@@ -73,6 +73,27 @@ uint32_t ewmh_net_number_of_desktops()
     return ret;
 }
 
+void ewmh_set_net_number_of_desktops(uint32_t value)
+{
+    xcb_connection_t *conn = xcb_connect(NULL, NULL);
+    xcb_screen_t *screen;
+
+    screen = xcb_setup_roots_iterator(xcb_get_setup(conn)).data;
+
+    ewmh_change_property(
+        conn,
+        XCB_PROP_MODE_REPLACE,
+        screen->root,
+        "_NET_NUMBER_OF_DESKTOPS",
+        XCB_ATOM_CARDINAL,
+        1,
+        (void*)(&value)
+    );
+
+    /* Free resources */
+    xcb_disconnect(conn);
+}
+
 uint32_t ewmh_net_current_desktop()
 {
     xcb_connection_t *conn = xcb_connect(NULL, NULL);
