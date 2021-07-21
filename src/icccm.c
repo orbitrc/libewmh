@@ -25,7 +25,7 @@ char* icccm_wm_client_machine(xcb_window_t w)
         conn, cookie, NULL);
     val = xcb_get_property_value(reply);
     if (val != NULL) {
-        val_len = strlen((char*)val);
+        val_len = xcb_get_property_value_length(reply);
         ret = malloc(val_len + 1);
         memcpy(ret, ((char*)val), (size_t)val_len);
     }
