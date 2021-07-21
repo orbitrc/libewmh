@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     uint32_t w = strtol(argv[1], NULL, 0);
 
     char *wm_client_machine = NULL;
+    ewmh_uint_list_t net_client_list;
     uint32_t net_number_of_desktops = 0;
     uint32_t net_current_desktop = 0;
     uint32_t net_active_window = 0;
@@ -19,13 +20,20 @@ int main(int argc, char *argv[])
     printf("Root window\n");
 
     /* Get root window properties */
+    net_client_list = ewmh_net_client_list();
     net_number_of_desktops = ewmh_net_number_of_desktops();
     net_current_desktop = ewmh_net_current_desktop();
     net_active_window = ewmh_net_active_window();
 
+    printf("_NET_CLIENT_LIST:\n");
+    for (size_t i = 0; i < net_client_list.length; ++i) {
+        printf("    %#010x\n", ewmh_uint_list_at(&net_client_list, i, NULL));
+    }
     printf("_NET_NUMBER_OF_DESKTOPS:    %d\n", net_number_of_desktops);
     printf("_NET_CURRENT_DESKTOP:       %d\n", net_current_desktop);
     printf("_NET_ACTIVE_WINDOW:         %#010x\n", net_active_window);
+
+    ewmh_uint_list_free(&net_client_list);
 
     /*===================*/
     /* Window properties */

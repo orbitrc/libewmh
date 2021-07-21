@@ -1,8 +1,9 @@
 OBJ = src/xcb.c \
+	src/collections.c \
 	src/icccm.c \
 	src/ewmh.c
 
-CFLAGS += -I./include -lxcb -Wall -O2
+CFLAGS += -I./include -lxcb -fPIC -Wall -O2
 
 VERSION_MAJOR = 0
 VERSION_MINOR = 1

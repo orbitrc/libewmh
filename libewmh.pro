@@ -9,6 +9,7 @@ SOURCES += src/xcb.c \
 
 HEADERS += include/libewmh/base.h \
     include/libewmh/xcb/xcb.h \
+    include/libewmh/xcb/collections.h \
     include/libewmh/icccm.h \
     include/libewmh/ewmh.h \
     tools/ncwm/window.h \

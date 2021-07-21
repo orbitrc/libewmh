@@ -11,12 +11,15 @@
 #define _LIBEWMH_EWMH_H
 
 #include "base.h"
+#include "xcb/collections.h"
 
 EWMH_EXTERN_C_BEGIN
 
 /*====================================*/
 /* Root window properties and messages*/
 /*====================================*/
+
+ewmh_uint_list_t ewmh_net_client_list();
 
 uint32_t ewmh_net_number_of_desktops();
 
