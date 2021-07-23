@@ -44,7 +44,7 @@ struct prop_tuple prop_index[INDEX_COUNT] = {
         NET_CURRENT_DESKTOP_INDEX,
         "_NET_CURRENT_DESKTOP",
         (void*)ewmh_net_current_desktop,
-        NULL,
+        (void (*)(void*))ewmh_set_net_current_desktop,
         FORMAT_DEC,
     },
     {

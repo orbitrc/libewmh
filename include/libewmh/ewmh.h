@@ -27,6 +27,8 @@ void ewmh_set_net_number_of_desktops(uint32_t value);
 
 uint32_t ewmh_net_current_desktop();
 
+void ewmh_set_net_current_desktop(uint32_t value);
+
 uint32_t ewmh_net_active_window();
 
 EWMH_EXTERN_C_END

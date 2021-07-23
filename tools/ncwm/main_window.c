@@ -4,6 +4,8 @@
 
 #define MAIN_WINDOW_WIDTH 60
 #define MAIN_WINDOW_HEIGHT 20
+#define MAIN_WINDOW_HORIZONTAL_MARGIN   5
+#define MAIN_WINDOW_VERTICAL_MARGIN     4
 
 static ncwm_window self;
 
@@ -15,7 +17,12 @@ static struct props props;
 
 ncwm_window main_window()
 {
-    self.window = newwin(MAIN_WINDOW_HEIGHT, MAIN_WINDOW_WIDTH, 3, 3);
+    self.window = newwin(
+        LINES - MAIN_WINDOW_VERTICAL_MARGIN,
+        COLS - MAIN_WINDOW_HORIZONTAL_MARGIN,
+        ((LINES - (LINES - MAIN_WINDOW_VERTICAL_MARGIN)) / 2),
+        ((COLS - (COLS - MAIN_WINDOW_HORIZONTAL_MARGIN)) / 2)
+    );
     keypad(self.window, TRUE);
 
     start_color();
