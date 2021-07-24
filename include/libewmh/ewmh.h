@@ -15,9 +15,9 @@
 
 EWMH_EXTERN_C_BEGIN
 
-/*====================================*/
-/* Root window properties and messages*/
-/*====================================*/
+/*=====================================*/
+/* Root window properties and messages */
+/*=====================================*/
 
 ewmh_uint_list_t ewmh_net_client_list();
 
@@ -30,6 +30,8 @@ uint32_t ewmh_net_current_desktop();
 void ewmh_set_net_current_desktop(uint32_t value);
 
 uint32_t ewmh_net_active_window();
+
+void ewmh_set_net_active_window(uint32_t window);
 
 EWMH_EXTERN_C_END
 

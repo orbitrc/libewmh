@@ -171,4 +171,25 @@ uint32_t ewmh_net_active_window()
     return ret;
 }
 
+void ewmh_set_net_active_window(uint32_t window)
+{
+    xcb_connection_t *conn = xcb_connect(NULL, NULL);
+    xcb_screen_t *screen;
+
+    screen = xcb_setup_roots_iterator(xcb_get_setup(conn)).data;
+
+    ewmh_change_property(
+        conn,
+        XCB_PROP_MODE_REPLACE,
+        screen->root,
+        "_NET_ACTIVE_WINDOW",
+        XCB_ATOM_WINDOW,
+        1,
+        (void*)(&window)
+    );
+
+    /* Free resources */
+    xcb_disconnect(conn);
+}
+
 EWMH_EXTERN_C_END
