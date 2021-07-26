@@ -33,6 +33,16 @@ uint32_t ewmh_net_active_window();
 
 void ewmh_set_net_active_window(uint32_t window);
 
+/*============================*/
+/* Other root window messages */
+/*============================*/
+
+/*===============================*/
+/* Application window properties */
+/*===============================*/
+
+char* ewmh_net_wm_name(uint32_t window);
+
 EWMH_EXTERN_C_END
 
 #endif /* _LIBEWMH_EWMH_H */

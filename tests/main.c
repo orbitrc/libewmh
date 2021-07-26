@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
     uint32_t w = strtol(argv[1], NULL, 0);
 
     char *wm_client_machine = NULL;
+    char *net_wm_name = NULL;
+
     ewmh_uint_list_t net_client_list;
     uint32_t net_number_of_desktops = 0;
     uint32_t net_current_desktop = 0;
@@ -42,11 +44,14 @@ int main(int argc, char *argv[])
 
     /* Get window properties */
     wm_client_machine = icccm_wm_client_machine(w);
+    net_wm_name = ewmh_net_wm_name(w);
 
     printf("WM_CLIENT_MACHINE: \"%s\"\n", wm_client_machine);
+    printf("_NET_WM_NAME:      \"%s\"\n", net_wm_name);
 
     /* Clean */
     free(wm_client_machine);
+    free(net_wm_name);
 
     return 0;
 }
