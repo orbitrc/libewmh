@@ -23,6 +23,12 @@ char* icccm_wm_client_machine(xcb_window_t w)
 
     xcb_get_property_reply_t *reply = xcb_get_property_reply(
         conn, cookie, NULL);
+    if (reply == NULL) {
+        xcb_disconnect(conn);
+
+        return NULL;
+    }
+
     val = xcb_get_property_value(reply);
     if (val != NULL) {
         val_len = xcb_get_property_value_length(reply);
