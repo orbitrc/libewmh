@@ -10,6 +10,8 @@ EWMH_EXTERN_C_BEGIN
 
 char* _ewmh_string_property(uint32_t window, const char *prop);
 
+uint32_t _ewmh_uint_property(uint32_t window, const char *prop);
+
 /*=====================================*/
 /* Root window properties and messages */
 /*=====================================*/
@@ -256,6 +258,11 @@ char* ewmh_net_wm_icon_name(uint32_t window)
     return _ewmh_string_property(window, "_NET_WM_ICON_NAME");
 }
 
+uint32_t ewmh_net_wm_desktop(uint32_t window)
+{
+    return _ewmh_uint_property(window, "_NET_WM_DESKTOP");
+}
+
 /*===================*/
 /* Generic functions */
 /*===================*/
@@ -291,6 +298,37 @@ char* _ewmh_string_property(uint32_t window, const char *prop)
         memcpy(ret, ((char*)val), (size_t)val_len);
         ret[val_len] = '\0';
     }
+
+    /* Free resources */
+    free(reply);
+    xcb_disconnect(conn);
+
+    return ret;
+}
+
+uint32_t _ewmh_uint_property(uint32_t window, const char *prop)
+{
+    xcb_connection_t *conn = xcb_connect(NULL, NULL);
+    void *val = NULL;
+    uint32_t ret = 0;
+
+    xcb_get_property_cookie_t cookie = ewmh_get_property_cookie(
+        conn,
+        window,
+        prop,
+        XCB_ATOM_WINDOW
+    );
+
+    xcb_get_property_reply_t *reply = xcb_get_property_reply(
+        conn, cookie, NULL);
+    if (reply == NULL) {
+        xcb_disconnect(conn);
+
+        return 0;
+    }
+
+    val = xcb_get_property_value(reply);
+    ret = *((uint32_t*)val);
 
     /* Free resources */
     free(reply);

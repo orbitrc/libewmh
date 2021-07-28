@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
     char *net_wm_name = NULL;
     char *net_wm_visible_name = NULL;
     char *net_wm_icon_name = NULL;
+    uint32_t net_wm_desktop = 0;
 
     ewmh_uint_list_t net_client_list;
     uint32_t net_number_of_desktops = 0;
@@ -49,11 +50,13 @@ int main(int argc, char *argv[])
     net_wm_name = ewmh_net_wm_name(w);
     net_wm_visible_name = ewmh_net_wm_visible_name(w);
     net_wm_icon_name = ewmh_net_wm_icon_name(w);
+    net_wm_desktop = ewmh_net_wm_desktop(w);
 
     printf("WM_CLIENT_MACHINE:      \"%s\"\n", wm_client_machine);
     printf("_NET_WM_NAME:           \"%s\"\n", net_wm_name);
     printf("_NET_WM_VISIBLE_NAME:   \"%s\"\n", net_wm_visible_name);
     printf("_NET_WM_ICON_NAME:      \"%s\"\n", net_wm_icon_name);
+    printf("_NET_WM_DESKTOP:        %d\n", net_wm_desktop);
 
     /* Clean */
     free(wm_client_machine);
