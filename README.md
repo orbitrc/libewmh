@@ -20,3 +20,11 @@ $ make
 $ make run WINDOW_ID=(YOUR WINDOW ID IN HEX)
 ```
 
+Install
+-------
+
+```sh
+$ make install
+```
+
+Currently this command installs only to `/usr/lib/`.
