@@ -1,0 +1,16 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #dedede;
+}
+
+.logo {
+  display: inline-block;
+}
+
+.bold {
+  font-weight: bold;
+}
