@@ -3,6 +3,10 @@ html, body {
   padding: 0;
 }
 
+ul {
+  margin: 0;
+}
+
 .header {
   background-color: #dedede;
 }

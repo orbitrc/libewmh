@@ -1,0 +1,15 @@
+.header-nav {
+  display: inline-block;
+  width: 70%;
+}
+
+.header-nav-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 414px) {
+  .header-nav {
+    width: 100%;
+  }
+}
