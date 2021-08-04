@@ -49,6 +49,7 @@ void ewmh_atom_list_free(ewmh_atom_list_t *list);
 
 ewmh_uint_list_t ewmh_uint_list_new();
 void ewmh_uint_list_push(ewmh_uint_list_t *list, uint32_t uint);
+size_t ewmh_uint_list_length(ewmh_uint_list_t *list);
 uint32_t ewmh_uint_list_at(ewmh_uint_list_t *list, size_t index, int *error);
 void ewmh_uint_list_free(ewmh_uint_list_t *list);
 

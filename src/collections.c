@@ -33,6 +33,11 @@ void ewmh_uint_list_push(ewmh_uint_list_t *list, uint32_t uint)
     list->length += 1;
 }
 
+size_t ewmh_uint_list_length(ewmh_uint_list_t *list)
+{
+    return list->length;
+}
+
 uint32_t ewmh_uint_list_at(ewmh_uint_list_t *list, size_t index, int *error)
 {
     /* Bounding check. */
