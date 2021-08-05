@@ -7,8 +7,8 @@
 //
 //
 */
-#ifndef _EWMH_ICCCM_ICCCM_H
-#define _EWMH_ICCCM_ICCCM_H
+#ifndef _EWMH_ICCCM_H
+#define _EWMH_ICCCM_H
 
 #include <xcb/xcb.h>
 
@@ -20,4 +20,4 @@ char* icccm_wm_client_machine(xcb_window_t w);
 
 EWMH_EXTERN_C_END
 
-#endif /* _EWMH_ICCCM_ICCCM_H */
+#endif /* _EWMH_ICCCM_H */

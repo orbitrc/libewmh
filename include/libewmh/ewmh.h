@@ -7,8 +7,8 @@
 //
 //
 */
-#ifndef _LIBEWMH_EWMH_H
-#define _LIBEWMH_EWMH_H
+#ifndef _EWMH_EWMH_H
+#define _EWMH_EWMH_H
 
 #include "base.h"
 #include "xcb/collections.h"
@@ -79,4 +79,4 @@ uint32_t ewmh_net_wm_bypass_compositor(uint32_t window);
 
 EWMH_EXTERN_C_END
 
-#endif /* _LIBEWMH_EWMH_H */
+#endif /* _EWMH_EWMH_H */
