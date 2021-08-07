@@ -87,20 +87,34 @@ void ewmh_set_net_number_of_desktops(uint32_t value)
 {
     xcb_connection_t *conn = xcb_connect(NULL, NULL);
     xcb_screen_t *screen;
+    xcb_atom_t atom;
 
     screen = xcb_setup_roots_iterator(xcb_get_setup(conn)).data;
 
-    ewmh_change_property(
-        conn,
-        XCB_PROP_MODE_REPLACE,
-        screen->root,
-        "_NET_NUMBER_OF_DESKTOPS",
-        XCB_ATOM_CARDINAL,
-        1,
-        (void*)(&value)
+    atom = ewmh_get_atom(conn, "_NET_NUMBER_OF_DESKTOPS");
+
+    xcb_client_message_data_t data;
+    data.data32[0] = value;
+    data.data32[1] = 0;
+    data.data32[2] = 0;
+    data.data32[3] = 0;
+    data.data32[4] = 0;
+
+    xcb_client_message_event_t *event = malloc(
+        sizeof(xcb_client_message_event_t)
     );
 
+    event->response_type = XCB_CLIENT_MESSAGE;
+    event->format = 32;
+    event->sequence = 0;
+    event->window = screen->root;
+    event->type = atom;
+    event->data = data;
+
+    ewmh_send_client_message_event(conn, screen->root, event);
+
     /* Free resources */
+    free(event);
     xcb_disconnect(conn);
 }
 
@@ -136,20 +150,34 @@ void ewmh_set_net_current_desktop(uint32_t value)
 {
     xcb_connection_t *conn = xcb_connect(NULL, NULL);
     xcb_screen_t *screen;
+    xcb_atom_t atom;
 
     screen = xcb_setup_roots_iterator(xcb_get_setup(conn)).data;
 
-    ewmh_change_property(
-        conn,
-        XCB_PROP_MODE_REPLACE,
-        screen->root,
-        "_NET_CURRENT_DESKTOP",
-        XCB_ATOM_CARDINAL,
-        1,
-        (void*)(&value)
+    atom = ewmh_get_atom(conn, "_NET_CURRENT_DESKTOP");
+
+    xcb_client_message_data_t data;
+    data.data32[0] = value;
+    data.data32[1] = 0;
+    data.data32[2] = 0;
+    data.data32[3] = 0;
+    data.data32[4] = 0;
+
+    xcb_client_message_event_t *event = malloc(
+        sizeof(xcb_client_message_event_t)
     );
 
+    event->response_type = XCB_CLIENT_MESSAGE;
+    event->format = 32;
+    event->sequence = 0;
+    event->window = screen->root;
+    event->type = atom;
+    event->data = data;
+
+    ewmh_send_client_message_event(conn, screen->root, event);
+
     /* Free resources */
+    free(event);
     xcb_disconnect(conn);
 }
 

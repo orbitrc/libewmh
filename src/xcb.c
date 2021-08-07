@@ -61,4 +61,21 @@ void ewmh_change_property(xcb_connection_t *conn, uint8_t mode, xcb_window_t w,
     }
 }
 
+void ewmh_send_client_message_event(xcb_connection_t *conn, xcb_window_t w,
+        xcb_client_message_event_t *event)
+{
+    xcb_void_cookie_t cookie = xcb_send_event_checked(
+        conn,
+        false,
+        w,
+        XCB_EVENT_MASK_PROPERTY_CHANGE,
+        (const char*)event
+    );
+
+    xcb_generic_error_t *err = xcb_request_check(conn, cookie);
+    if (err != NULL) {
+        free(err);
+    }
+}
+
 EWMH_EXTERN_C_END

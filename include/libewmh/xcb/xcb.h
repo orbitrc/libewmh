@@ -23,4 +23,7 @@ xcb_get_property_cookie_t ewmh_get_property_cookie(xcb_connection_t *conn,
 void ewmh_change_property(xcb_connection_t *conn, uint8_t mode, xcb_window_t w,
         const char *prop, xcb_atom_t type, size_t data_len, void *data);
 
+void ewmh_send_client_message_event(xcb_connection_t *conn, xcb_window_t w,
+        xcb_client_message_event_t *event);
+
 #endif /* _EWMH_XCB_XCB_H */
