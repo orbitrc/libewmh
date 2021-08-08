@@ -1,6 +1,8 @@
 libewmh
 ========
 
+![libewmh-logo](https://raw.githubusercontent.com/orbitrc/libewmh/main/docs/libewmh-logo.svg)
+
 An xcb wrapper library for ICCCM and EWMH.
 
 Home Page
